@@ -24,7 +24,28 @@ const Gallery = () => {
 
   return (
     <section id="gallery" className="bg-gray-50">
-      <div className="w-full">
+      {/* Mobile Layout */}
+      <div className="block sm:hidden w-screen">
+        {images.map((image) => (
+          <div
+            key={image.id}
+            className="w-full"
+            style={{
+              height: '250px'
+            }}
+          >
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden sm:block w-full">
         <div className="flex flex-wrap justify-center">
           {images.map((image, index) => (
             <div
