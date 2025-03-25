@@ -3,15 +3,13 @@ import { Check } from 'lucide-react';
 
 interface PackageCardProps {
   title: string;
-  price: string;
   features: string[];
   highlight?: boolean;
 }
 
-const PackageCard = ({ title, price, features, highlight = false }: PackageCardProps) => (
+const PackageCard = ({ title, features, highlight = false }: PackageCardProps) => (
   <div className={`bg-white rounded-lg shadow-lg p-6 sm:p-8 ${highlight ? 'border-2 border-blue-600 transform scale-105' : ''}`}>
-    <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{title}</h3>
-    <p className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6">${price}</p>
+    <h3 className="text-xl sm:text-2xl font-bold mb-6">{title}</h3>
     <ul className="space-y-2 sm:space-y-3">
       {features.map((feature: string, index: number) => (
         <li key={index} className="flex items-start">
@@ -39,7 +37,6 @@ const Packages = () => {
   const packages = [
     {
       title: "Just Photos",
-      price: "170",
       features: [
         "Interior/Exterior Photos",
         "Custom Lead Generation Website",
@@ -48,7 +45,6 @@ const Packages = () => {
     },
     {
       title: "Standard Package",
-      price: "230",
       features: [
         "Professional Photography",
         "Drone Photography",
@@ -59,7 +55,6 @@ const Packages = () => {
     },
     {
       title: "Grand Slam Marketing",
-      price: "750",
       highlight: true,
       features: [
         "Professional Photography",
@@ -74,7 +69,6 @@ const Packages = () => {
     },
     {
       title: "Social Seller",
-      price: "315",
       features: [
         "Professional Photography",
         "Walkthrough House Video",
@@ -87,10 +81,7 @@ const Packages = () => {
   ];
 
   return (
-    <section 
-      id="packages" 
-      className="py-12 sm:py-20 bg-white scroll-mt-20"
-    >
+    <section id="packages" className="py-12 sm:py-20 bg-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Real Estate Packages</h2>
