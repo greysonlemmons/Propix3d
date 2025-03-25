@@ -34,7 +34,7 @@ const Navbar = () => {
                 Gallery
               </a>
               <a href="#construction" className="text-gray-300 hover:text-[#C9AE5D] px-3 py-2 text-lg font-medium transition duration-300">
-                Construction
+                Construction Media
               </a>
               <button onClick={scrollToContact} className="text-gray-300 hover:text-[#C9AE5D] px-3 py-2 text-lg font-medium transition duration-300">
                 Contact
@@ -70,7 +70,7 @@ const Navbar = () => {
               Gallery
             </a>
             <a href="#construction" className="text-gray-300 hover:text-[#C9AE5D] block px-3 py-2 text-base font-medium transition duration-300">
-              Construction
+              Construction Media
             </a>
             <button onClick={scrollToContact} className="text-gray-300 hover:text-[#C9AE5D] block w-full text-left px-3 py-2 text-base font-medium transition duration-300">
               Contact

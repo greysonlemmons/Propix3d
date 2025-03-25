@@ -5,15 +5,15 @@ const ConstructionPackages = () => {
     <div id="construction" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-5xl font-bold text-black mb-6">Construction Progress Documentation</h2>
+          <h2 className="text-5xl font-bold text-black mb-6">Construction Media</h2>
           <p className="text-xl text-black mb-16 max-w-3xl mx-auto leading-relaxed">
-            Professional aerial and ground photography services to document your construction projects from start to finish. 
-            Our comprehensive documentation packages are customized to meet your project's specific needs and timeline.
+            Professional aerial and ground photography services to document your construction projects. 
+            Our media packages are customized to meet your project's specific needs and timeline.
           </p>
           
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="bg-white rounded-lg shadow-lg p-12">
-              <h3 className="text-3xl font-bold text-black mb-12">Comprehensive Documentation Services</h3>
+              <h3 className="text-3xl font-bold text-black mb-12">Media Services</h3>
               
               <div className="grid md:grid-cols-2 gap-16 text-left">
                 <div className="space-y-8">
