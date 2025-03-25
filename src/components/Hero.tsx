@@ -115,16 +115,20 @@ const Hero = () => {
                 href="https://pro-pix-3d.aryeo.com/order-forms/86b73249-51e8-4e40-93a0-cad1581fe504?placing_team_membership_id=0193407a-76c8-7286-a2f3-45251f297173"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#C9AE5D] text-black px-6 sm:px-10 py-4 sm:py-5 rounded-md text-lg sm:text-xl font-bold hover:bg-[#D4BC75] transition-all duration-300 transform hover:scale-105 shadow-lg inline-block text-center w-full sm:w-auto"
+                className="bg-[#C9AE5D] text-black px-6 sm:px-10 py-4 sm:py-5 rounded-md text-lg sm:text-xl font-bold hover:bg-[#D4BC75] transition-all duration-300 transform hover:scale-105 shadow-lg inline-block text-center w-full sm:w-auto touch-manipulation"
               >
                 Place an Order
               </a>
-              <button 
-                onClick={scrollToPackages} 
-                className="bg-white text-black px-6 sm:px-10 py-4 sm:py-5 rounded-md text-lg sm:text-xl font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg w-full sm:w-auto"
+              <a 
+                href="#packages"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToPackages();
+                }}
+                className="bg-white text-black px-6 sm:px-10 py-4 sm:py-5 rounded-md text-lg sm:text-xl font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg w-full sm:w-auto touch-manipulation"
               >
                 View Our Packages
-              </button>
+              </a>
             </div>
           </div>
         </div>
