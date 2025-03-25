@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const Hero = () => {
   const scrollToPackages = () => {
     const packages = document.getElementById('packages');
     if (packages) {
       packages.scrollIntoView({ behavior: 'smooth' });
+      // Close mobile menu if open
+      const mobileMenu = document.querySelector('[role="dialog"]');
+      if (mobileMenu) {
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      }
     }
   };
 
@@ -20,18 +25,39 @@ const Hero = () => {
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]));
+
+  // Preload next image
+  const preloadNextImage = useCallback((nextIndex: number) => {
+    if (loadedImages.has(nextIndex)) return;
+    
+    const img = new Image();
+    img.src = backgroundImages[nextIndex].src;
+    img.onload = () => {
+      setLoadedImages(prev => new Set(prev).add(nextIndex));
+    };
+  }, [loadedImages]);
 
   useEffect(() => {
+    // Preload next image
+    const nextIndex = (currentImageIndex + 1) % backgroundImages.length;
+    preloadNextImage(nextIndex);
+
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
+        setCurrentImageIndex(prevIndex => {
+          const nextIndex = (prevIndex + 1) % backgroundImages.length;
+          // Preload the next image after this one
+          preloadNextImage((nextIndex + 1) % backgroundImages.length);
+          return nextIndex;
+        });
         setIsTransitioning(false);
-      }, 1000); // Fade duration
-    }, 6000); // Change image every 6 seconds
+      }, 1000);
+    }, 6000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [currentImageIndex, preloadNextImage]);
 
   return (
     <div className="relative min-h-screen">
@@ -43,60 +69,62 @@ const Hero = () => {
             currentImageIndex === index ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <img
-            src={image.src}
-            alt={image.alt}
-            className="w-full h-full object-cover"
-          />
+          {loadedImages.has(index) && (
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="w-full h-full object-cover"
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
         </div>
       ))}
+      
+      {/* Loading Placeholder */}
+      {!loadedImages.has(currentImageIndex) && (
+        <div className="absolute inset-0 bg-black animate-pulse"></div>
+      )}
       
       {/* Main Content */}
       <div className="relative min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-3xl">
             {/* Main Title */}
-            <h1 className="text-[6rem] md:text-[10rem] font-black text-white leading-none tracking-tight flex items-baseline flex-wrap">
+            <h1 className="text-[4rem] sm:text-[6rem] md:text-[10rem] font-black leading-none tracking-tight flex items-baseline flex-wrap">
               <span className="text-white">
                 PROPIX
               </span>
             </h1>
 
             {/* Tagline */}
-            <p className="text-3xl md:text-4xl text-[#C9AE5D] font-bold mt-8 mb-6">
-              Capturing Property Potential<br />
+            <p className="text-2xl sm:text-3xl md:text-4xl text-[#C9AE5D] font-bold mt-4 sm:mt-8 mb-4 sm:mb-6">
+              Capturing Property Potential<br className="hidden sm:block" />
               from Every Angle
             </p>
 
             {/* Description */}
-            <p className="text-xl text-gray-200 mb-12 max-w-2xl">
+            <p className="text-lg sm:text-xl text-gray-200 mb-8 sm:mb-12 max-w-2xl">
               Professional photography, videography, and drone services 
               to showcase your properties at their absolute best.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <a 
                 href="https://pro-pix-3d.aryeo.com/order-forms/86b73249-51e8-4e40-93a0-cad1581fe504?placing_team_membership_id=0193407a-76c8-7286-a2f3-45251f297173"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#C9AE5D] text-black px-10 py-5 rounded-md text-xl font-bold hover:bg-[#D4BC75] transition-all duration-300 transform hover:scale-105 shadow-lg inline-block text-center"
+                className="bg-[#C9AE5D] text-black px-6 sm:px-10 py-4 sm:py-5 rounded-md text-lg sm:text-xl font-bold hover:bg-[#D4BC75] transition-all duration-300 transform hover:scale-105 shadow-lg inline-block text-center w-full sm:w-auto"
               >
                 Place an Order
               </a>
               <button 
                 onClick={scrollToPackages} 
-                className="bg-white text-black px-10 py-5 rounded-md text-xl font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="bg-white text-black px-6 sm:px-10 py-4 sm:py-5 rounded-md text-lg sm:text-xl font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg w-full sm:w-auto"
               >
                 View Our Packages
               </button>
-              <a 
-                href="#contact" 
-                className="bg-black/30 backdrop-blur-sm text-white border-2 border-white px-10 py-5 rounded-md text-xl font-bold hover:bg-black/50 transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                Contact Us
-              </a>
             </div>
           </div>
         </div>
