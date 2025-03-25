@@ -8,8 +8,8 @@ interface GalleryImage {
 }
 
 const Gallery = () => {
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'real-estate'>('all');
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   const images: GalleryImage[] = [
     // Real Estate Photos - Using optimized versions
@@ -27,9 +27,7 @@ const Gallery = () => {
     { id: 12, src: '/Website Pictures/optimized/10-print-DJI_0848.jpg', alt: 'Property Aerial View', category: 'real-estate' as const },
   ];
 
-  const filteredImages = selectedCategory === 'all' 
-    ? images 
-    : images.filter(img => img.category === selectedCategory);
+  const displayedImages = showAll ? images : images.slice(0, 6);
 
   return (
     <section id="gallery" className="py-20 bg-gray-50">
@@ -39,27 +37,49 @@ const Gallery = () => {
           <p className="text-lg text-gray-600">View our portfolio of stunning real estate photography</p>
         </div>
 
-        {/* Image Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {images.map((image) => (
-            <div
-              key={image.id}
-              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md"
-              onClick={() => setSelectedImage(image)}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-48 sm:h-64 object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm sm:text-base font-medium">
-                  View Image
-                </span>
+        {/* Overlapping Image Grid */}
+        <div className="relative max-w-5xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-4">
+            {displayedImages.map((image, index) => (
+              <div
+                key={image.id}
+                className="relative transform transition-all duration-300 hover:scale-105 hover:z-10"
+                style={{
+                  width: '300px',
+                  height: '200px',
+                  marginLeft: index % 3 === 0 ? '0' : '-30px',
+                  marginTop: index > 2 ? '-30px' : '0',
+                  zIndex: index
+                }}
+                onClick={() => setSelectedImage(image)}
+              >
+                <div className="w-full h-full overflow-hidden rounded-lg shadow-lg">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-white opacity-0 hover:opacity-100 transition-opacity duration-300 text-sm font-medium">
+                      View Image
+                    </span>
+                  </div>
+                </div>
               </div>
+            ))}
+          </div>
+          
+          {!showAll && images.length > 6 && (
+            <div className="text-center mt-8">
+              <button
+                onClick={() => setShowAll(true)}
+                className="bg-gold-500 text-white px-6 py-2 rounded-md hover:bg-gold-600 transition-colors"
+              >
+                View More
+              </button>
             </div>
-          ))}
+          )}
         </div>
       </div>
 

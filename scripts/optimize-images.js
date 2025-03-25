@@ -14,13 +14,14 @@ if (!fs.existsSync(targetDir)) {
 async function optimizeImage(inputPath, outputPath) {
   try {
     await sharp(inputPath)
-      .resize(1200, 800, { // Max dimensions for gallery
-        fit: 'inside',
-        withoutEnlargement: true
+      .resize(600, 400, { // Smaller dimensions for overlapping gallery
+        fit: 'cover',
+        position: 'attention' // Focus on the important part of the image
       })
       .jpeg({ 
-        quality: 80,
-        progressive: true
+        quality: 70, // Slightly more aggressive compression
+        progressive: true,
+        mozjpeg: true // Use mozjpeg for better compression
       })
       .toFile(outputPath);
     console.log(`Optimized: ${path.basename(inputPath)}`);
