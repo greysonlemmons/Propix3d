@@ -30,25 +30,25 @@ const Gallery = () => {
   const displayedImages = showAll ? images : images.slice(0, 6);
 
   return (
-    <section id="gallery" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="bg-gray-50">
+      <div className="w-full">
         {/* Overlapping Image Grid */}
-        <div className="relative max-w-5xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-4">
+        <div className="relative w-full">
+          <div className="flex flex-wrap justify-center">
             {displayedImages.map((image, index) => (
               <div
                 key={image.id}
                 className="relative transform transition-all duration-300 hover:scale-105 hover:z-10"
                 style={{
-                  width: '300px',
-                  height: '200px',
-                  marginLeft: index % 3 === 0 ? '0' : '-30px',
-                  marginTop: index > 2 ? '-30px' : '0',
+                  width: '400px',
+                  height: '300px',
+                  marginLeft: index % 3 === 0 ? '0' : '-60px',
+                  marginTop: index > 2 ? '-60px' : '0',
                   zIndex: index
                 }}
                 onClick={() => setSelectedImage(image)}
               >
-                <div className="w-full h-full overflow-hidden rounded-lg shadow-lg">
+                <div className="w-full h-full overflow-hidden">
                   <img
                     src={image.src}
                     alt={image.alt}
@@ -66,7 +66,7 @@ const Gallery = () => {
           </div>
           
           {!showAll && images.length > 6 && (
-            <div className="text-center mt-8">
+            <div className="text-center mt-4 mb-8">
               <button
                 onClick={() => setShowAll(true)}
                 className="bg-gold-500 text-white px-6 py-2 rounded-md hover:bg-gold-600 transition-colors"
