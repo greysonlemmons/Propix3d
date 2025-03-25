@@ -12,19 +12,19 @@ const Gallery = () => {
   const [showAll, setShowAll] = useState(false);
 
   const images: GalleryImage[] = [
-    // Real Estate Photos - Using optimized versions
-    { id: 1, src: '/Website Pictures/optimized/22-print-IMG_9236.jpg', alt: 'Luxury Home Exterior', category: 'real-estate' as const },
-    { id: 2, src: '/Website Pictures/optimized/17-print-IMG_9221.jpg', alt: 'Elegant Living Space', category: 'real-estate' as const },
-    { id: 3, src: '/Website Pictures/optimized/35-print-IMG_8348.jpg', alt: 'Stylish Home Interior', category: 'real-estate' as const },
-    { id: 4, src: '/Website Pictures/optimized/1-print-IMG_8423.jpg', alt: 'Contemporary Home', category: 'real-estate' as const },
-    { id: 5, src: '/Website Pictures/optimized/45-print-IMG_0829.jpg', alt: 'Luxury Property', category: 'real-estate' as const },
-    { id: 6, src: '/Website Pictures/optimized/1-print-IMG_8357.jpg', alt: 'Modern Architecture', category: 'real-estate' as const },
-    { id: 7, src: '/Website Pictures/optimized/30-print-IMG_3934.jpg', alt: 'Elegant Home Design', category: 'real-estate' as const },
-    { id: 8, src: '/Website Pictures/optimized/25-print-IMG_3913.jpg', alt: 'Beautiful Property', category: 'real-estate' as const },
-    { id: 9, src: '/Website Pictures/optimized/2-print-DJI_0538a.jpg', alt: 'Aerial Home View', category: 'real-estate' as const },
-    { id: 10, src: '/Website Pictures/optimized/1-print-DJI_0387.jpg', alt: 'Drone Property Shot', category: 'real-estate' as const },
-    { id: 11, src: '/Website Pictures/optimized/6-print-DJI_0814.jpg', alt: 'Aerial Property Overview', category: 'real-estate' as const },
-    { id: 12, src: '/Website Pictures/optimized/10-print-DJI_0848.jpg', alt: 'Property Aerial View', category: 'real-estate' as const },
+    // Real Estate Photos
+    { id: 1, src: '/Website Pictures/22-print-IMG_9236.jpg', alt: 'Luxury Home Exterior', category: 'real-estate' as const },
+    { id: 2, src: '/Website Pictures/17-print-IMG_9221.jpg', alt: 'Elegant Living Space', category: 'real-estate' as const },
+    { id: 3, src: '/Website Pictures/35-print-IMG_8348.jpg', alt: 'Stylish Home Interior', category: 'real-estate' as const },
+    { id: 4, src: '/Website Pictures/1-print-IMG_8423.jpg', alt: 'Contemporary Home', category: 'real-estate' as const },
+    { id: 5, src: '/Website Pictures/45-print-IMG_0829.jpg', alt: 'Luxury Property', category: 'real-estate' as const },
+    { id: 6, src: '/Website Pictures/1-print-IMG_8357.jpg', alt: 'Modern Architecture', category: 'real-estate' as const },
+    { id: 7, src: '/Website Pictures/30-print-IMG_3934.jpg', alt: 'Elegant Home Design', category: 'real-estate' as const },
+    { id: 8, src: '/Website Pictures/25-print-IMG_3913.jpg', alt: 'Beautiful Property', category: 'real-estate' as const },
+    { id: 9, src: '/Website Pictures/2-print-DJI_0538a.jpg', alt: 'Aerial Home View', category: 'real-estate' as const },
+    { id: 10, src: '/Website Pictures/1-print-DJI_0387.jpg', alt: 'Drone Property Shot', category: 'real-estate' as const },
+    { id: 11, src: '/Website Pictures/6-print-DJI_0814.jpg', alt: 'Aerial Property Overview', category: 'real-estate' as const },
+    { id: 12, src: '/Website Pictures/10-print-DJI_0848.jpg', alt: 'Property Aerial View', category: 'real-estate' as const },
   ];
 
   const displayedImages = showAll ? images : images.slice(0, 6);
