@@ -32,13 +32,12 @@ const Gallery = () => {
   return (
     <section id="gallery" className="bg-gray-50">
       <div className="w-full">
-        {/* Overlapping Image Grid */}
         <div className="relative w-full">
           <div className="flex flex-wrap justify-center">
             {displayedImages.map((image, index) => (
               <div
                 key={image.id}
-                className="relative transform transition-all duration-300 hover:scale-105 hover:z-10"
+                className="relative cursor-pointer"
                 style={{
                   width: '400px',
                   height: '300px',
@@ -48,19 +47,12 @@ const Gallery = () => {
                 }}
                 onClick={() => setSelectedImage(image)}
               >
-                <div className="w-full h-full overflow-hidden">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="text-white opacity-0 hover:opacity-100 transition-opacity duration-300 text-sm font-medium">
-                      View Image
-                    </span>
-                  </div>
-                </div>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>
