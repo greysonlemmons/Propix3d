@@ -28,7 +28,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center text-gray-400">
                 <Mail className="h-5 w-5 mr-2" />
-                <span>propix3d@gmail.com</span>
+                <span>nolan@propix3d.com</span>
               </div>
               <div className="flex items-center text-gray-400">
                 <MapPin className="h-5 w-5 mr-2" />

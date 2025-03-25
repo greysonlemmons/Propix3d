@@ -86,7 +86,7 @@ const ConstructionPackages = () => {
 
             <div className="text-center pt-8">
               <a 
-                href="mailto:propix3d@gmail.com?subject=Construction%20Photography%20Quote%20Request"
+                href="mailto:nolan@propix3d.com?subject=Construction%20Photography%20Quote%20Request"
                 className="inline-block bg-[#C9AE5D] text-black px-12 py-5 rounded-md text-2xl font-bold hover:bg-[#D4BC75] transition duration-300 shadow-lg"
               >
                 Get a Free Quote Today
