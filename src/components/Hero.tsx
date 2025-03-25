@@ -109,13 +109,13 @@ const Hero = () => {
               to showcase your properties at their absolute best.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            {/* CTA Buttons - Hidden on mobile, visible on sm and up */}
+            <div className="hidden sm:flex flex-row gap-4">
               <a 
                 href="https://pro-pix-3d.aryeo.com/order-forms/86b73249-51e8-4e40-93a0-cad1581fe504?placing_team_membership_id=0193407a-76c8-7286-a2f3-45251f297173"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#C9AE5D] text-black px-6 sm:px-10 py-4 sm:py-5 rounded-md text-lg sm:text-xl font-bold hover:bg-[#D4BC75] transition-all duration-300 transform hover:scale-105 shadow-lg inline-block text-center w-full sm:w-auto touch-manipulation"
+                className="bg-[#C9AE5D] text-black px-10 py-5 rounded-md text-xl font-bold hover:bg-[#D4BC75] transition-all duration-300 transform hover:scale-105 shadow-lg w-auto"
               >
                 Place an Order
               </a>
@@ -125,7 +125,7 @@ const Hero = () => {
                   e.preventDefault();
                   scrollToPackages();
                 }}
-                className="bg-white text-black px-6 sm:px-10 py-4 sm:py-5 rounded-md text-lg sm:text-xl font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg w-full sm:w-auto touch-manipulation"
+                className="bg-white text-black px-10 py-5 rounded-md text-xl font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg w-auto"
               >
                 View Our Packages
               </a>
